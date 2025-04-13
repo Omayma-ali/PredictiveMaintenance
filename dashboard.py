@@ -84,35 +84,118 @@ with tab3:
     model = joblib.load('predictive_maintainance_model.p')    
 
     all_features = ['time_cycles', 'unit_number', 'op_setting_1','op_setting_2','op_setting_3'] + [f"sensor_{i}" for i in range(1, 22)]
+    model_features = ['time_cycles', 'unit_number', 'sensor_8', 'sensor_13', 'sensor_12',
+                      'sensor_7', 'sensor_11', 'sensor_4', 'sensor_15']
 
-    # Initialize session state
     for feature in all_features:
         if feature not in st.session_state:
             st.session_state[feature] = 0.0
+    if 'rul' not in st.session_state:
+        st.session_state.rul = None
 
-    # Generate random values
-    if st.button("🔄 Generate Random Sensor Data"):
-        for feature in all_features:
-            if feature == 'unit_number':
-                st.session_state[feature] = int(np.random.randint(1, 101))
-            elif feature == 'time_cycles':
-                st.session_state[feature] = int(np.random.randint(1, 301))
+    # Custom CSS for animation
+    st.markdown("""
+    <style>
+    .shake {
+        animation: shake 0.5s;
+        animation-iteration-count: infinite;
+    }
+
+    @keyframes shake {
+        0% { transform: translate(1px, 1px) rotate(0deg); }
+        10% { transform: translate(-1px, -2px) rotate(-1deg); }
+        20% { transform: translate(-3px, 0px) rotate(1deg); }
+        30% { transform: translate(3px, 2px) rotate(0deg); }
+        40% { transform: translate(1px, -1px) rotate(1deg); }
+        50% { transform: translate(-1px, 2px) rotate(-1deg); }
+        60% { transform: translate(-3px, 1px) rotate(0deg); }
+        70% { transform: translate(3px, 1px) rotate(-1deg); }
+        80% { transform: translate(-1px, -1px) rotate(1deg); }
+        90% { transform: translate(1px, 2px) rotate(0deg); }
+        100% { transform: translate(1px, -2px) rotate(-1deg); }
+    }
+    </style>
+    """, unsafe_allow_html=True)
+
+    # Layout row
+    col_gen, col_rul = st.columns([3, 2])
+
+    with col_gen:
+        if st.button("🔄 Generate Random Sensor Data"):
+            for feature in all_features:
+                if feature == 'unit_number':
+                    st.session_state[feature] = int(np.random.randint(1, 101))
+                elif feature == 'time_cycles':
+                    st.session_state[feature] = int(np.random.randint(1, 301))
+                else:
+                    st.session_state[feature] = round(np.random.uniform(-2, 2), 4)
+
+    # Auto prediction
+    try:
+        input_data = []
+        for feat in model_features:
+            val = st.session_state[feat]
+            if feat == 'unit_number':
+                val = min(max(int(val), 1), 100)
+            elif feat == 'time_cycles':
+                val = int(val)
+            input_data.append(val)
+
+        input_array = np.array([input_data])
+        prediction = model.predict(input_array)
+        predicted_rul = float(prediction[0]) if isinstance(prediction[0], (int, float, np.floating)) else float(prediction[0][0])
+        st.session_state.rul = predicted_rul
+
+    except Exception as e:
+        st.session_state.rul = None
+        st.error(f"Prediction failed: {e}")
+
+    # RUL Output
+    with col_rul:
+        if st.session_state.rul is not None:
+            st.metric("📉 Predicted RUL", f"{st.session_state.rul:.2f} cycles")
+
+            if st.session_state.rul < 20:
+                st.toast("🚨 Critical RUL! Act immediately.", icon="🚨")
+                st.markdown("""
+                <div class="shake" style='background-color:#ffe6e6;padding:15px;border-radius:10px;color:#a10000;font-weight:bold'>
+                ⚠️ RUL is dangerously low! Immediate action required!
+                </div>
+                """, unsafe_allow_html=True)
+
+                # Play alert sound
+                st.markdown("""
+                <audio autoplay>
+                  <source src="https://www.soundjay.com/button/beep-07.wav" type="audio/wav">
+                </audio>
+                """, unsafe_allow_html=True)
+
+            elif st.session_state.rul < 50:
+                st.toast("⚠️ RUL is getting low. Plan inspection.", icon="⚠️")
+                st.markdown("""
+                <div style='background-color:#fff6e6;padding:15px;border-radius:10px;color:#996600;font-weight:bold'>
+                ⚠️ Consider inspecting the engine soon.
+                </div>
+                """, unsafe_allow_html=True)
+
             else:
-                st.session_state[feature] = round(np.random.uniform(-2, 2), 4)
+                st.toast("✅ RUL is healthy. No immediate action needed.", icon="✅")
+                st.markdown("""
+                <div style='background-color:#e6ffe6;padding:15px;border-radius:10px;color:#006600;font-weight:bold'>
+                ✅ Engine condition looks good!
+                </div>
+                """, unsafe_allow_html=True)
 
-    # Display inputs
+    # Inputs section
     st.subheader("✍️ Input Sensor and Operational Values:")
     cols = st.columns(3)
-    inputs = []
-
     for idx, feature in enumerate(all_features):
         col = cols[idx % 3]
 
-        # Special handling for unit_number
         if feature == 'unit_number':
             if st.session_state[feature] < 1:
                 st.session_state[feature] = 1
-            value = col.number_input(
+            col.number_input(
                 label=feature,
                 min_value=1,
                 max_value=100,
@@ -122,7 +205,7 @@ with tab3:
             )
 
         elif feature == 'time_cycles':
-            value = col.number_input(
+            col.number_input(
                 label=feature,
                 step=1,
                 value=int(st.session_state[feature]),
@@ -130,42 +213,9 @@ with tab3:
             )
 
         else:
-            value = col.number_input(
+            col.number_input(
                 label=feature,
                 step=0.01,
                 value=st.session_state[feature],
+                key=feature
             )
-
-        inputs.append(value)
-
-    # Features used by the trained model
-    model_features = ['time_cycles', 'unit_number', 'sensor_8', 'sensor_13', 'sensor_12',
-                      'sensor_7', 'sensor_11', 'sensor_4', 'sensor_15']
-
-    # Predict RUL
-    if st.button("🚀 Predict RUL"):
-        try:
-            input_data = []
-            for feat in model_features:
-                val = st.session_state[feat]
-                if feat == 'unit_number':
-                    val = min(max(int(val), 1), 100)
-                elif feat == 'time_cycles':
-                    val = int(val)
-                input_data.append(val)
-
-            input_array = np.array([input_data])
-            prediction = model.predict(input_array)
-            predicted_rul = float(prediction[0]) if isinstance(prediction[0], (int, float, np.floating)) else float(prediction[0][0])
-
-            st.success(f"📉 Predicted Remaining Useful Life: **{predicted_rul:.2f}** cycles")
-
-            if predicted_rul < 20:
-                st.error("⚠️ Warning: Low Remaining Useful Life! Schedule maintenance soon.")
-            elif predicted_rul < 50:
-                st.warning("⚠️ Moderate RUL - plan for inspection.")
-            else:
-                st.info("✅ Equipment health is good.")
-
-        except Exception as e:
-            st.error(f"Prediction failed: {e}")
