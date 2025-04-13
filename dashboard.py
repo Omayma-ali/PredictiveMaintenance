@@ -27,7 +27,7 @@ with st.sidebar:
     selected_sensor = st.sidebar.selectbox("Choose Sensor", sensor_list)
             
     st.sidebar.write("")
-    st.sidebar.markdown("Made by [Omayma Ali](https://github.com/Omayma-ali)")
+    st.sidebar.markdown("Made by [Predictive Maintainance Team](https://github.com/KarimXHamed/PredictiveMaintenance)")
 
 
 
