@@ -123,10 +123,21 @@ with tab3:
     # --- الأعمدة اللي الموديل متدرب عليها
     model_features = ['time_cycles', 'unit_number', 'sensor_8', 'sensor_13', 'sensor_12',
                   'sensor_7', 'sensor_11', 'sensor_4', 'sensor_15']
+
     if st.button("🚀 Predict RUL"):
         try:
-            input_data = np.array([[st.session_state[feat] for feat in model_features]])
-            prediction = model.predict(input_data)
+            input_data = []
+            for feat in model_features:
+                val = st.session_state[feat]
+                # ضبط القيم للـ unit_number و time_cycles
+                if feat == 'unit_number':
+                    val = min(max(int(val), 1), 100)  # محصور بين 1 و 100
+                elif feat == 'time_cycles':
+                    val = int(val)  # أي رقم صحيح
+                input_data.append(val)
+
+            input_array = np.array([input_data])
+            prediction = model.predict(input_array)
             predicted_rul = float(prediction[0]) if isinstance(prediction[0], (int, float, np.floating)) else float(prediction[0][0])
 
             st.success(f"📉 Predicted Remaining Useful Life: **{predicted_rul:.2f}** cycles")
@@ -137,6 +148,7 @@ with tab3:
                 st.warning("⚠️ Moderate RUL - plan for inspection.")
             else:
                 st.info("✅ Equipment health is good.")
+
         except Exception as e:
             st.error(f"Prediction failed: {e}")
 
