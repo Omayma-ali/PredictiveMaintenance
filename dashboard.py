@@ -16,7 +16,7 @@ df = pd.read_csv('train_FD001.txt', sep='\s+', header=None, names=column_names)
 
 with st.sidebar:
 
-    st.sidebar.image('image\download8.jfif')
+    st.sidebar.image('download8.jfif')
     st.sidebar.subheader("This dashboard for Predictive Maintenance for Aircraft Engines")
     st.sidebar.write("")
 
@@ -45,11 +45,11 @@ with tab1:
             "My project aims to help you make the right decisions and perform timely preventive maintenance"
             "by developing a predictive model that can identify potential failures based on operational data.")
    
-    im1 = Image.open('image\Aircraft-microchip-800x500.jpg')
-    im2 = Image.open('image\download7.jfif')
-    im3 = Image.open('image\images8.jfif')
-    im4 = Image.open('image\images10.jfif')
-    im5 = Image.open('image\image9.png')
+    im1 = Image.open('Aircraft-microchip-800x500.jpg')
+    im2 = Image.open('download7.jfif')
+    im3 = Image.open('images8.jfif')
+    im4 = Image.open('images10.jfif')
+    im5 = Image.open('image9.png')
 
     # Images2 Cards for predictive mainainance stages
     img1, img2 = st.columns((5, 5))
