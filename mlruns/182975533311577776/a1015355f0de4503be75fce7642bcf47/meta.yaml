@@ -1,0 +1,15 @@
+artifact_uri: file:///c:/Users/CM/Desktop/final project/Depi final project/project/mlruns/Aircraft_Engine_RUL_Prediction_artifacts/a1015355f0de4503be75fce7642bcf47/artifacts
+end_time: 1744741047906
+entry_point_name: ''
+experiment_id: '182975533311577776'
+lifecycle_stage: active
+run_id: a1015355f0de4503be75fce7642bcf47
+run_name: resilient-hawk-771
+run_uuid: a1015355f0de4503be75fce7642bcf47
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1744741038292
+status: 3
+tags: []
+user_id: CM

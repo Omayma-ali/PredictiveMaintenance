@@ -1,0 +1,15 @@
+artifact_uri: file:///c:/Users/CM/Desktop/final%20project/Depi%20final%20project/project/mlruns/798788120507524617/b10ca018fbc24327b1d1da90139e04fa/artifacts
+end_time: 1744741038275
+entry_point_name: ''
+experiment_id: '798788120507524617'
+lifecycle_stage: active
+run_id: b10ca018fbc24327b1d1da90139e04fa
+run_name: dapper-sponge-440
+run_uuid: b10ca018fbc24327b1d1da90139e04fa
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1744740039769
+status: 3
+tags: []
+user_id: CM

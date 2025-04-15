@@ -1,0 +1,15 @@
+artifact_uri: file:///c:/Users/CM/Desktop/final project/Depi final project/project/mlruns/Aircraft_Engine_RUL_Prediction_artifacts/3c80e9b1fe2344ef9b28f783da60a166/artifacts
+end_time: 1744739566622
+entry_point_name: ''
+experiment_id: '182975533311577776'
+lifecycle_stage: active
+run_id: 3c80e9b1fe2344ef9b28f783da60a166
+run_name: mysterious-fish-328
+run_uuid: 3c80e9b1fe2344ef9b28f783da60a166
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1744739553163
+status: 3
+tags: []
+user_id: CM

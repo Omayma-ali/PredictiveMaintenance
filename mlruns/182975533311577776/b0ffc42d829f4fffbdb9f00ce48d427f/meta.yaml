@@ -1,0 +1,15 @@
+artifact_uri: file:///c:/Users/CM/Desktop/final project/Depi final project/project/mlruns/Aircraft_Engine_RUL_Prediction_artifacts/b0ffc42d829f4fffbdb9f00ce48d427f/artifacts
+end_time: 1744741056419
+entry_point_name: ''
+experiment_id: '182975533311577776'
+lifecycle_stage: active
+run_id: b0ffc42d829f4fffbdb9f00ce48d427f
+run_name: luminous-roo-882
+run_uuid: b0ffc42d829f4fffbdb9f00ce48d427f
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1744741047929
+status: 3
+tags: []
+user_id: CM

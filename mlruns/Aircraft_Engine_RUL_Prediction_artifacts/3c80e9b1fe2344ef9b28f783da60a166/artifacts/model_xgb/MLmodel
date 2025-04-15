@@ -1,0 +1,40 @@
+artifact_path: model_xgb
+flavors:
+  python_function:
+    data: model.xgb
+    env:
+      conda: conda.yaml
+      virtualenv: python_env.yaml
+    loader_module: mlflow.xgboost
+    python_version: 3.11.12
+  xgboost:
+    code: null
+    data: model.xgb
+    model_class: xgboost.sklearn.XGBRegressor
+    model_format: xgb
+    xgb_version: 1.7.6
+is_signature_from_type_hint: false
+mlflow_version: 2.21.3
+model_size_bytes: 602387
+model_uuid: 9265952280d14252be70b73995e66f1e
+prompts: null
+run_id: 3c80e9b1fe2344ef9b28f783da60a166
+saved_input_example_info:
+  artifact_path: input_example.json
+  pandas_orient: split
+  serving_input_path: serving_input_example.json
+  type: dataframe
+signature:
+  inputs: '[{"type": "double", "name": "sensor_2", "required": true}, {"type": "double",
+    "name": "sensor_3", "required": true}, {"type": "double", "name": "sensor_4",
+    "required": true}, {"type": "double", "name": "sensor_7", "required": true}, {"type":
+    "double", "name": "sensor_8", "required": true}, {"type": "double", "name": "sensor_11",
+    "required": true}, {"type": "double", "name": "sensor_12", "required": true},
+    {"type": "double", "name": "sensor_13", "required": true}, {"type": "double",
+    "name": "sensor_15", "required": true}, {"type": "double", "name": "sensor_17",
+    "required": true}, {"type": "double", "name": "sensor_20", "required": true},
+    {"type": "double", "name": "sensor_21", "required": true}]'
+  outputs: '[{"type": "tensor", "tensor-spec": {"dtype": "float32", "shape": [-1]}}]'
+  params: null
+type_hint_from_example: false
+utc_time_created: '2025-04-15 17:52:35.357506'
