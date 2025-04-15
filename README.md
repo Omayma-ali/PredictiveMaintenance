@@ -111,8 +111,6 @@ conda env create -f environment.yml
 conda activate predictive-maintenance
 ```
 
-> Replace `predictive-maintenance` with your actual environment name if different.
-
 ### 3️⃣ Pull data and models using DVC:
 
 Make sure DVC is installed:
