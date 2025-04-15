@@ -68,14 +68,16 @@ The system uses NASA’s **Turbofan Engine Degradation Simulation Dataset**. The
 ## 🧠 Machine Learning Pipeline
 
 ### 🔧 Preprocessing:
-- Normalization  
+- Normalization
+- feature Engineering 
+- feature selection
 - Trend extraction  
 - Sensor data fusion
 
 ### 🧮 Algorithms:
-- LSTM (Recurrent Neural Network)
-- Survival Analysis
-- Gradient Boosting Machines
+- Random forest 
+- XGBoost Resressor
+- LightGBM 
 
 ### 🎯 Outputs:
 - RUL prediction  
@@ -86,10 +88,11 @@ The system uses NASA’s **Turbofan Engine Degradation Simulation Dataset**. The
 
 ## ✅ Key Benefits
 
-- 🔧 25–40% reduction in maintenance cost  
-- 🕵️‍♀️ 60% better early fault detection  
-- 📡 Real-time monitoring compatible  
-- ⚙️ Adaptable to various engine types
+- Predicts the Remaining Useful Life (RUL) of aircraft engines for smarter maintenance decisions.
+- Reduces unplanned downtime and improves equipment safety.
+- Lowers maintenance costs by preventing unnecessary part replacements.
+- Provides real-time predictions via a user-friendly Streamlit dashboard.
+- Supports data-driven maintenance planning using machine learning models.
 
 ---
 
