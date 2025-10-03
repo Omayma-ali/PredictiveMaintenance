@@ -86,6 +86,18 @@ The system uses NASA’s **Turbofan Engine Degradation Simulation Dataset**. The
 
 ---
 
+## 📊 Model Performance
+
+- **RMSE:** 22.5 cycles  
+- **MAE:** 14.8 cycles  
+- **R² Score:** 0.87  
+
+📷 Example Outputs:  
+![RUL Prediction](./images/rul_prediction.png)  
+![Dashboard Screenshot](./images/dashboard.png)  
+
+---
+
 ## ✅ Key Benefits
 
 - Predicts the Remaining Useful Life (RUL) of aircraft engines for smarter maintenance decisions.
@@ -145,24 +157,36 @@ You can inspect or customize them there.
 ## 📂 Project Structure
 
 ```
-predictive-maintenance/
+PredictiveMaintenance/
 │
 ├── data/                 # Raw & preprocessed data (DVC-tracked)
-├── models/               # Trained model files (DVC-tracked)
-├── images/               # Images used in README or dashboard
-├── train.ipynb           # Main training notebook
-├── dashboard.py          # Streamlit dashboard app
-├── environment.yml       # Conda environment configuration
+├── models/               # Trained models (DVC-tracked)
+├── images/               # Diagrams & results
+├── train.ipynb           # Training notebook
+├── dashboard.py          # Streamlit dashboard
+├── environment.yml       # Environment configuration
 ├── dvc.yaml              # DVC pipeline configuration
-├── README.md             # Project documentation
-├── mlruns/               # MLflow experiment tracking (optional)
-└── ...
+├── README.md             # Documentation
+└── mlruns/               # MLflow experiment tracking
 ```
-
 
 ---
 
-## 🤝 Contributions
+## 🔮 Future Work
 
-Pull requests are welcome.  
-For major changes, please open an issue first to discuss what you would like to change.
+- Experiment with **LSTM/GRU** for time-series modeling  
+- Hyperparameter tuning for deeper optimization  
+- Deploy as **REST API** or package in **Docker**  
+- Real-time streaming data integration  
+
+---
+
+## 👩‍💻 Author
+
+**Omayma Ali** — Data Scientist & Machine Learning Engineer  
+
+- [GitHub](https://github.com/Omayma-ali)  
+- [LinkedIn](www.linkedin.com/in/omayma-ali)  
+- [Fiverr](https://www.fiverr.com/users/omaymaaa)
+- [Khamsat](https://khamsat.com/user/omayma_ali)
+
