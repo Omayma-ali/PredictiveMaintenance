@@ -16,7 +16,7 @@ df = pd.read_csv('train_FD001.txt', sep='\s+', header=None, names=column_names)
 
 # Sidebar
 with st.sidebar:
-    st.sidebar.image('image\download8.jfif')
+    st.sidebar.image('images\download8.jfif')
     st.sidebar.subheader("This dashboard for Predictive Maintenance for Aircraft Engines")
     st.sidebar.write("")
 
@@ -27,7 +27,7 @@ with st.sidebar:
     selected_sensor = st.sidebar.selectbox("Choose Sensor", sensor_list)
 
     st.sidebar.write("")
-    st.sidebar.markdown("Made by [Predictive Maintainance Team](https://github.com/KarimXHamed/PredictiveMaintenance)")
+    st.sidebar.markdown("Made by [Predictive Maintainance Team](https://github.com/Omayma-ali/PredictiveMaintenance)")
 
 # Dashboard Tabs
 tab1, tab2, tab3 = st.tabs(["🏠 Home", "📈 Insights", "🤖 Prediction"])
@@ -41,11 +41,11 @@ with tab1:
             "My project aims to help you make the right decisions and perform timely preventive maintenance"
             "by developing a predictive model that can identify potential failures based on operational data.")
    
-    im1 = Image.open('image\Aircraft-microchip-800x500.jpg')
-    im2 = Image.open('image\download7.jfif')
-    im3 = Image.open('image\images8.jfif')
-    im4 = Image.open('image\images10.jfif')
-    im5 = Image.open('image\image9.png')
+    im1 = Image.open('images\Aircraft-microchip-800x500.jpg')
+    im2 = Image.open('images\download7.jfif')
+    im3 = Image.open('images\images8.jfif')
+    im4 = Image.open('images\images10.jfif')
+    im5 = Image.open('images\image9.png')
 
     # Images for predictive maintenance stages
     img1, img2 = st.columns((5, 5))
@@ -219,3 +219,4 @@ with tab3:
                 value=st.session_state[feature],
                 key=feature
             )
+
